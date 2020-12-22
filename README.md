@@ -5,7 +5,7 @@
 1、登陆、注销
 ![image](login.png)
 2、主办方创建赛事报名表
-![image](create.png)
+![image](ccreate match.png)
 3、参赛者报名（团队报名、独立报名）
 ![image](Applicationform.png)
 4、主办方查看报名情况
