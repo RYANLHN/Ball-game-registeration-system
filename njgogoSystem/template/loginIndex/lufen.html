@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lufen</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" >
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</head>
+<body>
+    <div class="box-1">
+        <div class="" style="width:80%;text-align:center;position:relative;left:10%;">
+            <div style="width:{{width}}%;float:left;">
+                <div class="lufen lufentitle" >场次</div>
+                {% for i in bianhao %}
+                    <div class="lufen lufenbody" style="width:100%;">{{i}}</div>
+                {% endfor %}
+            </div>
+            <div style="width:{{width}}%;float:left;">
+                <div class="lufen lufentitle" >时间</div>
+                {% for i in time %}
+                    <div class="lufen lufenbody" style="width:100%;">{{i}}</div>
+                {% endfor %}
+            </div>
+            <div style="width:{{widthbody}}%;float:left;">
+                {% for i in title %}
+                    <div class="lufen lufentitle" style="width:{{widthbodyl}}%">{{i}}</div>
+                {% endfor %}
+                {% for i in zhixucelist %}
+                    <div class="lufen lufenbody lufenmatch" style="width:{{widthbodyl}}%">
+                        <span>{{i.gametype}}</span><span>{{i.lunshu}}</span><span>{{i.zubie}}</span><span>{{i.changci}}</span><span style="display:none">{{i.player1}}</span><span style="display:none">{{i.player2}}</span><span style="display:none">{{i.id}}</span><span class="jifenbiao_select_btn">计分表</span>
+                    </div>
+                {% endfor %}
+                {% for i in taotailist %}
+                    <div class="lufen lufenbody lufenmatch" style="width:{{widthbodyl}}%">
+                        <span>{{i.gametype}}</span><span>{{i.lunshu}}</span><span>{{i.zubie}}</span><span>{{i.changci}}</span><span style="display:none">{{i.player1}}</span><span style="display:none">{{i.player2}}</span><span style="display:none">{{i.id}}</span><span class="jifenbiao_select_btn">计分表</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    <form id="jifenforminfo" method="POST" action="{% url 'mainIndex:printjifenbiao' BMid %}" target="_blank" style="display:none">
+        {% csrf_token %}
+        {{formc}}
+    </form>
+    <form style="display:none;position:fixed;bottom:20px;" id="lufenform" action="{% url 'mainIndex:uploadbifen'  %}" method="POST" target="_blank" >
+                {% csrf_token %}
+                {{form}}
+    </form>
+    <div class="alertbox" id="lufen_alertbox" style="display:none">
+        <div>
+
+            <div class="alerttext">场次</div><div class="alerttext" id="name1">name1</div><div class="alerttext" id="name2">name2</div>
+            <div class="alerttext">1</div><div class="alerttext"><input type="number" class="alertinput" id="bifen11"></div><div class="alerttext"><input type="number" class="alertinput" id="bifen12"></div>
+            <div class="alerttext">2</div><div class="alerttext"><input type="number" class="alertinput" id="bifen21"></div><div class="alerttext"><input type="number" class="alertinput" id="bifen22"></div>
+            <div class="alerttext">3</div><div class="alerttext"><input type="number" class="alertinput" id="bifen31"></div><div class="alerttext"><input type="number" class="alertinput" id="bifen32"></div>
+            <input type="button" value="确定成绩" onclick="quedingchengji()">
+        </div>
+    </div>
+    <div style="display:none" id="havelufen">{{qdic}}</div>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+{% extends 'loginIndex/control.html' %}
+
+{%block content%}
+
+<!--  <div class='box-1'>-->
+<!--     <div class='box-1-2'>-->
+<!--         <input type="button" value="收起报名情况">-->
+<!--     </div>-->
+<!-- </div>-->
+
+
+<div class='box-1' id="datacheck">
+    <div class='box-1-2'>
+        <div>
+            <div id="player_numshow">{{player_numShow}}</div>
+            <div id="clist" style="display:none">{{clist}}</div>
+            <div>{% if typelist %}
+                    <select id="dulitype" onclick="selectcontent()">
+                        <option>全部</option>
+                    {% for i in typelist %}
+                            <option>{{i}}</option>
+                    {% endfor %}
+                    </select>
+                 {% endif %}
+            </div>
+
+        </div>
+
+        <div id="all_box" >
+            {% if clist %}
+                {% for i in player_list %}
+                    <p style="width: 33%;height:20px;float:left;margin:auto;padding:5px 1px;"><span>{{i}}</span><span style="display:none"></span><span></span><span style="display:none"></span><span></span><span style="display:none"></span><span style="display:none"></span></p>
+                {% endfor %}
+            {% else %}
+                {% if num %}
+                    {% for i in player_list %}
+                        <p style="width: 33%;height:20px;float:left;margin:auto;padding:5px 1px;"><span>{{i.playerCompany}}</span><span style="display:none">{{i.id}}</span><span>{{i.player1Name}}</span><span style="display:none">{{i.player1Id}}</span><span>{{i.player2Name}}</span><span style="display:none">{{i.player2Id}}</span><span style="display:none">{{i.playerType}}</span></p>
+                    {% endfor %}
+                {% else %}
+                        <p>暂无报名人员</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class='box-1' style="display:none" id="fenzuszbox">
+    <div class='box-1-2'>
+<!--        <div>{{playerr1}}</div>-->
+        <form action="{% url 'mainIndex:control' user %}" method="POST" id="querenfenzu">
+            {% csrf_token %}
+            <div>淘汰赛<input type="checkbox" value="1" id="cbox1"> 小组赛+淘汰赛<input type="checkbox" value="2" id="cbox2"></div>
+            <div class="xiaozu">设置组别数量:<input type="number" min="2" step="1" value="4" id="zubienum"></br></div>
+            <div class="xiaozu">每组出线人数:<input type="number" min="1" step="1" value="1" id="chuxiannum"></br></div>
+
+            <div class="zhongzi">1号种子选手：<input type="text" id="pppp"></div>
+            <div class="zhongzi">2号种子选手：<input type="text" id="pppl"></div>
+            <input type="button" value="生成分组情况" onclick="fenzu()" >
+        </form>
+    </div>
+</div>
+
+<div class='box-1' >
+    <div class='box-1-2' style="display:none" id="showfenzubox">
+        <div id="showfenzu"></div>
+        <div id="test"></div>
+    </div>
+</div>
+
+
+<div id="action_box">
+    <div id="action_select_btn">操作选项</div>
+    <div id="export_select_box">
+        <div id="export_box">
+            <form action="{% url 'mainIndex:export' user %}" method="POST" id="exportall">
+                {% csrf_token %}
+            </form>
+            <button id="export_btn" class="export_b" onclick="exportthing()">导出编排结果</button>
+    <!--        <div class="export_b" id="export_select_box" >-->
+    <!--            <button id="export_btn_1" class="export_select" >导出参赛名单</button>-->
+    <!--            <button id="export_btn_2" class="export_select" >导出小组循环赛节目单</button>-->
+    <!--            <button id="export_btn_3" class="export_select" >导出淘汰赛节目单</button>-->
+    <!--        </div>-->
+        </div>
+        <div id="lufen_box">
+            <form action="{% url 'mainIndex:lufen' BMid %}" method="POST" id="lufenform" target="_blank">
+                {% csrf_token %}
+            </form>
+            <button id="lufen_btn" class="export_b" onclick="golufen()">进入录分</button>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock content%}

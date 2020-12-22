@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{user}}后台管理</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" >
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+</head>
+<body>
+
+ <div id="title-0">
+    <h1 class='title'>欢迎{{user}}使用njgogo后台管理页面{{s}}</h1>
+     <a href="/login/">退出登录</a>
+  </div>
+
+<form action="{% url 'mainIndex:baoming' user %}" method="POST" target="_blank" id="matchinfo">
+    {% csrf_token %}
+
+     <div class='box-1'>
+          <div class='box-1-2'>
+                  填写比赛信息表单
+          </div>
+     </div>
+
+    <div class='box-1'>
+          <div class='box-1-2'>
+              <div>比赛名称<input type="text" id="mn"></div>
+              <div>比赛报名方式<select  id="BMt"><option>团体报名</option><option>独立报名</option></select></div>
+              <div>比赛类型<br/>
+                  <input type="text" name="mt"><br/>
+                  <input type="button" id="addtype" value="添加比赛类型" onclick="addmt()">
+              </div>
+              <input type="button" onclick="ftofsubmit()" value="生成报名渠道" style="position:relative;left:22px;">
+<!--              <input type="button" id="caipanalert_btn" value="添加裁判" onclick="caipanbox_alert()">-->
+              <button id="caipanalert_btn" onclick="caipanbox_alert()">添加裁判</button>
+<!--              <div>比赛类型<select id="mt"><option>男子单打</option><option>女子单打</option><option>男子双打</option><option>女子双打</option><option>混合双打</option></select></div>-->
+          </div>
+     </div>
+
+     <div class='box-1' style="display:none" >
+          <div class='box-1-2' >
+                  {{form}}
+          </div>
+     </div>
+</form>
+ <div class='box-1' >
+      <div class='box-1-2'>
+              报名通道：固定域名+{{link}}（请复制使用）
+      </div>
+ </div>
+ <div class='box-1'>
+     <div class='box-1-2'>
+         <form action="{% url 'mainIndex:control' user %}" method="POST">
+             {% csrf_token %}
+             <input type="submit" value="查看报名情况">
+         </form>
+     </div>
+ </div>
+ <form id="exportForm" action="{% url 'mainIndex:savematch' %}" style="display:none" method="POST" target="_blank">
+ {% csrf_token %}
+     {{formb}}
+ </form>
+<div class="alertbox" id="caipan_alertbox" style="display:none">
+    <textarea cols="10" rows="10" style="width:80%;height:80%;position:relative;" id="caipan_content">王小明、李三</textarea>
+    <button class="caipanfill_btn" onclick="caipansubmit()">确定提交</button>
+    <button class="caipanfill_btn" onclick="caipanbox_alert()">取消</button>
+    <form style="display:none" method="POST" target="_blank" action="{% url 'mainIndex:savecaipan' %}" id="caipanform">
+        {% csrf_token %}
+        {{formc}}
+    </form>
+
+</div>
+<!--<div id="caipanalert_btn" onclick="caipanbox_alert()">-->
+<!--        <span>添加裁判</span>-->
+<!--</div>-->
+
+
+{#{% block content %}{% endblock content %}#}
+
+                 {% block content %}{% endblock content %}
+</body>
+</html>

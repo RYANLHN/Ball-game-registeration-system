@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建客户账号</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" >
+</head>
+<body>
+<div class='box-1'>
+    <div class='box-1-2'>
+        <form action="{% url 'mainIndex:createuser' %}" method="POST">
+            {% csrf_token %}
+            {{form}}
+            <input type="submit" value="创建">
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

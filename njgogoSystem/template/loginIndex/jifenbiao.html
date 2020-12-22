@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>njgogo记分表</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" >
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</head>
+<body style="background-color: white;">
+<div class="box-1" >
+    <div class="box-1-3">
+        <h1>记分表</h1>
+    </div>
+    <div class="box-1-3" style="height:100px;position:relative;left:3%;">
+        <div style="width:95%;">
+            <div class="box_1_3_1">
+                <div class="jifenbiao_2_left">
+                    比&nbsp赛&nbsp代&nbsp号:<input type="text" value="{{ name }}" style="font-size:{{namesize}}px;">
+                </div>
+                <div class="jifenbiao_2_left">
+                    项&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp目:<input type="text" value="{{ matchname }}">
+                </div>
+                <div class="jifenbiao_2_left">
+                    场地&nbsp(场序):<input type="text">
+                </div>
+                <div class="jifenbiao_2_left">
+                    日期&nbsp(时间):<input type="text" value="{{ startdate }}">
+                </div>
+            </div>
+            <div class="box_1_3_1">
+                <div style="height:20px;"></div>
+                <div><div style="height:20px;width:20px;border:1px solid;float:left;margin:0;"></div>
+                <input type="text" style="width:80%;position:relative;font-size:15px;" value="{{ p11 }}" ></div>
+                {% if p12 %}
+                <div><input type="text" style="width:80%;position:relative;font-size:15px;" value="{{ p12 }}" ></div>
+                {% endif %}
+                {% if d1 %}
+                <div><input type="text" style="width:80%;position:relative;font-size:{{player1size}}px;" value="{{ d1 }}" ></div>
+                {% endif %}
+            </div>
+            <div class="box_1_3_1">
+                <div style="font-size:15px;font-weight:bold;text-align:center;">得分</div>
+                <div>1<input type="number">:<input type="number"></div>
+                <div>2<input type="number">:<input type="number"></div>
+                <div>3<input type="number">:<input type="number"></div>
+            </div>
+            <div class="box_1_3_1">
+                <div style="height:20px;"></div>
+                <div>
+                <input type="text" style="width:80%;position:relative;font-size:15px;" value="{{ p21 }}">
+                <div style="height:20px;width:20px;border:1px solid;float:right;margin:0;"></div></div>
+                {% if p22 %}
+                <div><input type="text" style="width:80%;position:relative;font-size:15px;" value="{{ p22 }}"></div>
+                {% endif %}
+                {% if d2 %}
+                <div><input type="text" style="width:80%;position:relative;font-size:{{player2size}}px;" value="{{ d2 }}"></div>
+                {% endif %}
+            </div>
+            <div class="box_1_3_1">
+                <div class="jifenbiao_2_left">
+                    裁&nbsp&nbsp&nbsp判&nbsp&nbsp&nbsp员:
+                    <select >
+                        {% for i in caipan %}
+                        <option>{{i}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="jifenbiao_2_left">
+                    发球裁判员:
+                    <select >
+                        {% for i in caipan %}
+                        <option>{{i}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="jifenbiao_2_left">
+                    开始:<input type="text" style="width:40px;" >结束:<input type="text" style="width:40px;">
+                </div>
+                <div class="jifenbiao_2_left">
+                    比赛用时(分钟):<input type="text">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-1-3">
+        <div class="writescore_box">
+            <div class="writescore_box_1_up"><span style="width:100px;">{{p11}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_down"><span style="width:100px;">{{p12}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_up"><span style="width:100px;">{{p21}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_down dibu"><span style="width:100px;">{{p22}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+        </div>
+         <div class="writescore_box">
+            <div class="writescore_box_1_up"><span style="width:100px;">{{p11}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_down"><span style="width:100px;">{{p12}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_up"><span style="width:100px;">{{p21}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_down dibu"><span style="width:100px;">{{p22}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+        </div>
+         <div class="writescore_box">
+            <div class="writescore_box_1_up"><span style="width:100px;">{{p11}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_down"><span style="width:100px;">{{p12}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_up"><span style="width:100px;">{{p21}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_down dibu"><span style="width:100px;">{{p22}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+        </div>
+         <div class="writescore_box">
+            <div class="writescore_box_1_up"><span style="width:100px;">{{p11}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_down"><span style="width:100px;">{{p12}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_up"><span style="width:100px;">{{p21}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_down dibu"><span style="width:100px;">{{p22}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+        </div>
+         <div class="writescore_box">
+            <div class="writescore_box_1_up"><span style="width:100px;">{{p11}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_down"><span style="width:100px;">{{p12}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_up"><span style="width:100px;">{{p21}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+            <div class="writescore_box_1_down dibu"><span style="width:100px;">{{p22}}</span>
+                {% for i in nn %}
+                    <span>{{i}}</span>
+                {% endfor %}
+                <span style="border-right:1px solid;"></span>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="box_1_3_1" style="float: right;">
+        <div style="float:left;">裁判员签名：<input type="text"></div>
+        <div style="float:left;">裁判长签名：<input type="text"></div>
+    </div>
+    <!--endprint-->
+    <button id="ubtn" onclick="PdfPrintDiv()">打印</button>
+
+
+</div>
+</body>
+</html>

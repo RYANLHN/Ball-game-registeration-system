@@ -1,0 +1,43 @@
+{% load static %}
+<head>
+  <meta charset="UTF-8">
+  <title>
+    NJGOGO
+  </title>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" >
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+  
+</head>
+<body>
+
+
+  <div id="title-0">
+    <h1 class='title'>{{webtitle}}</h1>
+  </div>
+  <main class='container'>
+    <div class='box'>  
+
+
+      <form action="/login/" method="POST">
+        {% csrf_token %}
+        <div class='box-1'>
+          <div class='box-1-2'>
+                  {{form}}
+          </div>
+        </div>
+
+        <div class='box-1'>
+          <div class='box-1-2'>
+             <input type="submit" value="登陆">
+          </div>
+        </div>
+      </form>
+
+      
+    </div>
+
+  </main>
+
+</body>

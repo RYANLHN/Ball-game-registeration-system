@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>报名页</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" >
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+</head>
+<body onload="showform()">
+
+    <div class='box-1'>
+        <div class='box-1-2'>
+
+            欢迎报名{{matchname}}，当前比赛编号{{id}}，请填写下列资料：
+
+        </div>
+    </div>
+
+    <form action="{% url 'mainIndex:baomingsuccess' id %}" method="POST" id="playerlist">
+    {% csrf_token %}
+
+        <div class='box-1' >
+            <div class='box-1-2'>
+                <span id="BMtype" >{{matchBMtype}}</span>表
+            </div>
+        </div>
+        <div class='box-1' >
+            <div class='box-1-2'>
+                <div>公司/队伍名称<input type="text" id="pc"></div>
+                <div>联系人<input type="text" id="contp"></div>
+                <div>联系电话<input type="text" id="contn"></div>
+            </div>
+        </div>
+        <div id="group" style="display:none">
+            <div class='box-1' >
+                <div class='box-1-2'>
+                    <div>运动员姓名<input type="text" name="player"></div>
+                    <div>运动员证件号码<input type="text" name="player"></div>
+                    <div style="display:none">运动员2姓名<input type="text" name="player" value=""></div>
+                    <div style="display:none">运动员2证件号码<input type="text" name="player" value=""></div>
+                    <input type="text" value="0" name="player" style="display:none">
+                    <input type="text" value=";" name="player" style="display:none">
+                </div>
+            </div>
+            <div class='box-1' >
+                <div class='box-1-2'>
+                    <input type="button" id="addpeo" onclick="addpeople()" value="添加团队成员">
+                </div>
+            </div>
+
+        </div>
+
+        <div id="nogroup" style="display:none">
+            <div class='box-1'>
+                <div class='box-1-2'>
+                    <div>运动员姓名<input type="text" name="player"></div>
+                    <div>运动员证件号码<input type="text" name="player"></div>
+                    <div style="display:none">运动员2姓名<input type="text" name="player" ></div>
+                    <div style="display:none">运动员2证件号码<input type="text" name="player" ></div>
+                    <select id="gtype" class="type"  name="player" onclick="type_select(this)">
+                    {% for i in matchtype %}
+                        <option>{{i}}</option>
+                    {% endfor%}
+                    </select>
+                    <input type="text" value=";" name="player" style="display:none">
+                </div>
+            </div>
+            <div class='box-1' >
+                <div class='box-1-2'>
+                    <input type="button" id="addngpeo" onclick="addngpeople()" value="添加同队选手">
+                </div>
+            </div>
+        </div>
+
+        <div class='box-1' >
+            <div class='box-1-2'>
+                <input type="button" onclick="baomingsubmit()" value="提交">
+            </div>
+        </div>
+
+        <div style="display:none">{{forma}}</div>
+
+
+    </form>
+</body>
+</html>
